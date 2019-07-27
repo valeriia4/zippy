@@ -1,0 +1,300 @@
+// variables
+$mainColor: #444;
+$mainBackground: #fff;
+
+$container: 700px;
+$colGups: 15px;
+
+$mainFont: 'Montserrat', sans-serif;
+
+$textFont-size: 1rem;  // 16px
+$linkColor: blue;
+
+$breakpoints: (
+        xs: 0,
+        sm: 575px,
+        md: 768px,
+        lg: 1025px,
+        xl: 1200px,
+        xxl: 1440px
+);
+
+
+
+  //===========  mixins start ===========//
+
+// columns
+$columns: 12;
+
+
+@each $breakpoint in $breakpoints {
+  $name: nth($breakpoint, 1);
+  $size: nth($breakpoint, 2);
+  @media only screen and (min-width: $size) {
+    [class*="col-#{$name}"] {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: $colGups;
+      padding-left: $colGups;
+    }
+    @for $i from 1 through $columns {
+      .col-#{$name}-#{$i} {
+        flex-basis: 100% / $columns * $i;
+        max-width: 100% / $columns * $i;
+      }
+    }
+    @for $i from 1 through $columns {
+      .col-#{$name}-offset-#{$i} {
+        margin-left: 100% / $columns * $i
+      }
+    }
+  }
+}
+
+
+.container{
+  max-width: $container;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+// layout
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[class^='col']{
+  width: 100%;
+  min-height: 1px;
+}
+
+
+
+// main styles
+
+body{
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+//buttons
+a, button{
+  transition: .3s ease-in;
+  transition-property: color, background-color, opacity;
+  svg{
+    fill:currentColor;
+  }
+}
+button, .button{
+  cursor: pointer;
+}
+
+.ba-header{
+  background-image: url('../img/Image.png');
+  background-size: cover;
+  height: 692px; 
+
+  &__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0;
+  }
+}
+
+.menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__link{
+  font-size: 14px;
+  font-family: $mainFont;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  &:hover{
+    color: #ffe26d;
+  }
+  }
+}
+.menu__item + .menu__item{
+  margin-left: 25px;
+}
+
+.ba-logo{
+  font-size: 40px;
+  font-family: $mainFont;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 0.234;
+  text-align: left;
+
+}
+.ba-slider{
+  &__title{
+  font-size: 37px;
+  font-family: $mainFont;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 1.2;
+  max-width: 475px;
+  margin: 90px 0 35px;
+  }
+  &__subtitle{
+  font-size: 19px;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  max-width: 418px;
+  font-weight: lighter;
+  margin-bottom: 30px;
+  }
+  &__btn-left{
+  font-size: 11px;
+  font-family: $mainFont;
+  color: rgb(50, 50, 50);
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 3px;
+  background-color: rgb(255, 226, 109);
+  width: 125px;
+  height: 43px;
+  border: none;
+  }
+  &__btn-right{
+  font-size: 11px;
+  font-family: $mainFont;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 3px;
+  background-color: rgb(98, 73, 124);
+  width: 125px;
+  height: 43px;
+  border: none;
+  margin-left: 3px;
+  margin-bottom: 180px;
+  }
+  .ba-slider__btn-left:hover, .ba-slider__btn-right:hover{
+    border: 2px solid #993355;
+  }
+}
+.life{
+  background-color: #efefef;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  &__title{
+  font-size: 37px;
+  font-family: $mainFont;
+  color: rgb(4, 4, 5);
+  font-weight: bold;
+  line-height: 0.917;
+  text-align: center;
+  margin-bottom: 50px;
+  }
+}
+.slider-life{
+  margin-bottom: 10px;
+}
+.slider-nav{
+  max-width: 606px;
+  margin: 0 auto;
+}
+.prev,
+.next {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.prev{
+  left: -46px;
+}
+.next {
+  right: -40px;
+}
+.prev{
+  height: 70px;
+  width: 30px;
+  background-color: #2a2a2a;
+  background-image: url('../img/Left Arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+.next{
+  height: 70px;
+  width: 30px;
+  background-color: #2a2a2a;
+  background-image: url('../img/Right Arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+.prev:hover, .next:hover{
+background-color: #62497c;
+}
+.contact{
+  display: flex;
+}
+#map{
+  height: 655px;
+  width: 50%;
+}
+.form{
+  width: 50%;
+  background-color: #ffe26d;
+  padding: 45px;
+  &__title{
+  font-size: 40px;
+  font-family: $mainFont;
+  color: rgb(4, 4, 5);
+  font-weight: bold;
+  line-height: 0.917;
+  margin-bottom: 25px;
+  }
+  .name, .email, .subject, .message{
+  font-size: 14px;
+  font-family: $mainFont;
+  color: rgb(50, 50, 50);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 15px 0 10px;
+  }
+  input{
+  background-color: rgb(254, 254, 254);
+  box-shadow: 0px 1px 1px 0px rgba(22, 22, 23, 0.09);
+  width: 311px;
+  height: 44px;
+  border: none;
+  padding: 10px;
+  }
+  textarea{
+  background-color: rgb(254, 254, 254);
+  box-shadow: 0px 1px 1px 0px rgba(22, 22, 23, 0.09);
+  width: 311px;
+  height: 145px;
+  border: none;
+  padding: 10px;
+  }
+  &__btn{
+  background-color: rgb(98, 73, 124);
+  box-shadow: 0px 1px 1px 0px rgba(22, 22, 23, 0.09);
+  width: 311px;
+  font-size: 14.277px;
+  font-family: $mainFont;
+  color: rgb(254, 254, 254);
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  border: none;
+  line-height: 44px;
+  margin-top: 15px;
+  }
+}
